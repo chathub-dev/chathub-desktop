@@ -1,5 +1,8 @@
 name: Build/release Electron app
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
