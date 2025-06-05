@@ -24,7 +24,7 @@ function createWindow() {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     },
-    titleBarStyle: 'default'
+    titleBarStyle: 'hiddenInset'
   })
 
   mainWindow.on('ready-to-show', () => {
