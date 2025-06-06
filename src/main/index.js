@@ -1,7 +1,12 @@
 import { electronApp } from '@electron-toolkit/utils'
 import { app, BrowserWindow, shell } from 'electron'
+import contextMenu from 'electron-context-menu'
 import { join } from 'path'
 import icon from '../../resources/icon.png?asset'
+
+contextMenu({
+  showSaveImageAs: true
+})
 
 // Register custom protocol
 if (process.defaultApp) {
