@@ -11,6 +11,8 @@ asarUnpack:
 win:
   executableName: ChatHub
 nsis:
+  allowToChangeInstallationDirectory: true
+  oneClick: false
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
   uninstallDisplayName: ${productName}
