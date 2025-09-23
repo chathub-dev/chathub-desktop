@@ -18,23 +18,46 @@ if (process.defaultApp) {
 }
 
 let mainWindow = null
+let splashWindow = null
+
+function showSplash() {
+  if (splashWindow && !splashWindow.isDestroyed()) return
+  splashWindow = new BrowserWindow({
+    frame: false,
+    autoHideMenuBar: true,
+    show: true,
+    webPreferences: {
+      preload: join(__dirname, '../preload/index.js'),
+      sandbox: false
+    },
+    backgroundColor: '#ffffff'
+  })
+  splashWindow.maximize()
+  splashWindow.loadFile(join(__dirname, '../../resources/splash.html'))
+}
+
+function closeSplash() {
+  if (splashWindow && !splashWindow.isDestroyed()) {
+    splashWindow.close()
+  }
+  splashWindow = null
+}
 
 function createWindow() {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  // Show splash immediately
+  showSplash()
+
+  // Create the main browser window (hidden until content is ready)
+  mainWindow = new BrowserWindow({
     show: false,
     autoHideMenuBar: true,
+    backgroundColor: '#0f1115',
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     },
     titleBarStyle: 'hiddenInset'
-  })
-
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.maximize()
-    mainWindow.show()
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -71,8 +94,19 @@ function createWindow() {
     })
   }
 
-  mainWindow.loadURL('https://app.chathub.gg')
-  // mainWindow.loadURL('http://localhost:3000')
+  // Splash-only: load remote URL and reveal window when ready
+  const REMOTE_URL = 'https://app.chathub.gg'
+
+  mainWindow.webContents.on('did-finish-load', () => {
+    const currentUrl = mainWindow.webContents.getURL()
+    if (currentUrl.startsWith(REMOTE_URL)) {
+      closeSplash()
+      mainWindow.maximize()
+      mainWindow.show()
+    }
+  })
+
+  mainWindow.loadURL(REMOTE_URL)
 
   return mainWindow
 }
