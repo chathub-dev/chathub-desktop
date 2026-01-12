@@ -23,17 +23,17 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
     "electron-context-menu": "^4.1.1",
-    "electron-updater": "^6.3.9"
+    "electron-updater": "^6.7.3"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^2.0.0",
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",
-    "electron": "^38.2.2",
-    "electron-builder": "^26.0.12",
-    "electron-vite": "^4.0.1",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.4.0",
+    "electron-vite": "^5.0.0",
     "eslint": "^9.37.0",
     "prettier": "^3.6.2",
-    "vite": "^7.1.9"
+    "vite": "^7.3.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
