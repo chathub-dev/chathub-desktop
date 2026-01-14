@@ -22,8 +22,7 @@
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
-    "electron-context-menu": "^4.1.1",
-    "electron-updater": "^6.7.3"
+    "electron-context-menu": "^4.1.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config": "^2.0.0",
