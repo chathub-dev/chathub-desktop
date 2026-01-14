@@ -97,7 +97,7 @@ function createWindow() {
   // Splash-only: load remote URL and reveal window when ready
   const REMOTE_URL = 'https://app.chathub.gg'
 
-  mainWindow.webContents.on('did-finish-load', () => {
+  mainWindow.webContents.on('dom-ready', () => {
     const currentUrl = mainWindow.webContents.getURL()
     if (currentUrl.startsWith(REMOTE_URL)) {
       closeSplash()
